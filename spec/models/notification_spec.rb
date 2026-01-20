@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
-RSpec.describe Notification, type: :model do
+RSpec.describe Notification do
   let(:valid_attributes) do
     {
       title: Faker::Lorem.sentence,
@@ -27,10 +29,10 @@ RSpec.describe Notification, type: :model do
 
     context 'with wrong phone format' do
       it 'is not valid' do
-        notification = described_class.new(valid_attributes.merge(phone_number: "wrong format"))
+        notification = described_class.new(valid_attributes.merge(phone_number: 'wrong format'))
 
         expect(notification).not_to be_valid
-        expect(notification.errors[:phone_number]).to include("must be in E.164 format")
+        expect(notification.errors[:phone_number]).to include('must be in E.164 format')
       end
     end
   end
